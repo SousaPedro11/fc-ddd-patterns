@@ -36,7 +36,7 @@
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
     "format:fix": "prettier --write 'src/**/*.{ts,tsx}'",
     "format:check": "prettier --check 'src/**/*.{ts,tsx}'",
-    "tsc:noemit": "tsc --noEmit",
+    "tsc": "tsc --noEmit",
     "test": "jest"
   }
 }

@@ -22,11 +22,16 @@ Os agregados são grupos de objetos que são tratados como uma única unidade. N
 - `Customer` e `Address`: o objeto `Customer` é o agregado raiz, que contém um objeto `Address`. O objeto `Address` é tratado como parte do agregado `Customer` e não pode ser acessado diretamente por outros objetos.
 - `Product`: o objeto `Product` é um agregado independente, que não possui outros objetos associados a ele.
 
+### Eventos de domínio
+
+Os eventos de domínio são eventos que representam mudanças no estado do domínio. Neste curso, foram utilizados eventos de domínio para representar a criação de um novo pedido, a adição de um item ao pedido e a remoção de um item do pedido. Esses eventos são utilizados para notificar outros objetos sobre as mudanças no estado do domínio e manter a consistência dos dados.
+
 ## Patterns
 
 Além da modelagem tática, também foram utilizados alguns patterns de design para implementar o modelo de domínio de forma mais eficiente. Os patterns utilizados foram:
 
 - Repository: o pattern Repository foi utilizado para separar a lógica de persistência de dados da lógica de negócio. Neste curso, foram criadas interfaces `ProductRepository`, `CustomerRepository` e `OrderRepository` para definir as operações de leitura e escrita de dados.
+- Factory: o pattern Factory foi utilizado para encapsular a lógica de criação de objetos complexos. Neste curso, foram criadas fábricas `ProductFactory`, `CustomerFactory` e `OrderFactory` para criar objetos `Product`, `Customer` e `Order` com os atributos necessários.
 
 ## Arquitetura
 

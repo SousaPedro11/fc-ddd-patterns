@@ -5,7 +5,7 @@ describe('Order', () => {
   it('should create an order without items', () => {
     const order = new Order('1', '1', []);
     expect(order.id).toBe('1');
-    expect(order.customerID).toBe('1');
+    expect(order.customerId).toBe('1');
     expect(order.items).toEqual([]);
   });
 
@@ -13,7 +13,7 @@ describe('Order', () => {
     const item = new OrderItem('1', 'sapato', 10, '1', 1);
     const order = new Order('1', '1', [item]);
     expect(order.id).toBe('1');
-    expect(order.customerID).toBe('1');
+    expect(order.customerId).toBe('1');
     expect(order.items).toEqual([item]);
   });
 

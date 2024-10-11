@@ -16,7 +16,7 @@ export default class Order {
     return this._id;
   }
 
-  get customerID(): string {
+  get customerId(): string {
     return this._customerId;
   }
 

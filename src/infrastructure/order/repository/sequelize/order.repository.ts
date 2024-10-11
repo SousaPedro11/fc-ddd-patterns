@@ -9,7 +9,7 @@ export default class OrderRepository implements OrderRepositoryInterface {
     await OrderModel.create(
       {
         id: entity.id,
-        customer_id: entity.customerID,
+        customer_id: entity.customerId,
         total: entity.total(),
         items: entity.items.map((item) => ({
           id: item.id,
@@ -37,7 +37,7 @@ export default class OrderRepository implements OrderRepositoryInterface {
     try {
       await OrderModel.update(
         {
-          customer_id: _entity.customerID,
+          customer_id: _entity.customerId,
           total: _entity.total(),
         },
         {

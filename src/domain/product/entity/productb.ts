@@ -1,6 +1,6 @@
 import ProductInterface from './product.interface';
 
-export default class Product implements ProductInterface {
+export default class ProductB implements ProductInterface {
   private _id: string;
   private _name: string;
   private _price: number;
@@ -21,40 +21,28 @@ export default class Product implements ProductInterface {
   }
 
   get price(): number {
-    return this._price;
+    return this._price * 2;
   }
 
   changeName(name: string) {
     this._name = name;
-    this.validateName();
+    this.validate();
   }
 
   changePrice(price: number) {
     this._price = price;
-    this.validatePrice();
-  }
-
-  private validateId() {
-    if (this._id.trim().length < 1) {
-      throw new Error('Product ID is required');
-    }
-  }
-
-  private validateName() {
-    if (this._name.trim().length < 2) {
-      throw new Error('Product name is required');
-    }
-  }
-
-  private validatePrice() {
-    if (this._price < 0) {
-      throw new Error('Product price does not allow negative values');
-    }
+    this.validate();
   }
 
   private validate() {
-    this.validateId();
-    this.validateName();
-    this.validatePrice();
+    if (this._id.trim().length < 1) {
+      throw new Error('Product ID is required');
+    }
+    if (this._name.trim().length < 2) {
+      throw new Error('Product name is required');
+    }
+    if (this._price < 0) {
+      throw new Error('Product price does not allow negative values');
+    }
   }
 }

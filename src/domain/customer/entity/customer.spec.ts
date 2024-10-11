@@ -100,4 +100,11 @@ describe('Customer', () => {
       'Reward points cannot be negative',
     );
   });
+
+  it('should change the address', () => {
+    const customer = new Customer('1', 'John Doe');
+    const address = new Address('Main St.', '12345-678', 'Springfield');
+    customer.changeAddress(address);
+    expect(customer.address).toBe(address);
+  });
 });

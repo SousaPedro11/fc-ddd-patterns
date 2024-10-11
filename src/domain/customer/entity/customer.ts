@@ -1,3 +1,11 @@
+import EventDispatcher from '../../@shared/event/event-dispatcher';
+import CustomerAddressChangedEvent from '../event/customer-address-changed.event';
+import CustomerCreatedEvent from '../event/customer-created.event';
+import SendConsoleLogHandler from '../event/handler/send-console-log-when-address-changed.handler';
+import {
+  SendConsoleLog1Handler,
+  SendConsoleLog2Handler,
+} from '../event/handler/send-console-log-when-customer-created.handler';
 import Address from '../value-object/address';
 
 class Customer {
@@ -11,6 +19,7 @@ class Customer {
     this._id = id;
     this._name = name;
     this.validate();
+    this.notifyWhenCustomerCreated();
   }
 
   private validate() {
@@ -93,6 +102,37 @@ class Customer {
 
   changeAddress(address: Address) {
     this._address = address;
+    this.notifyWhenCustomerAddressChanged();
+  }
+
+  private notifyWhenCustomerCreated() {
+    const eventDispatcher = new EventDispatcher();
+    const eventName = 'CustomerCreatedEvent';
+
+    eventDispatcher.register(eventName, new SendConsoleLog1Handler());
+    eventDispatcher.register(eventName, new SendConsoleLog2Handler());
+
+    const userCreatedEvent = new CustomerCreatedEvent({
+      id: this.id,
+      name: this.name,
+    });
+
+    eventDispatcher.notify(userCreatedEvent);
+  }
+
+  private notifyWhenCustomerAddressChanged() {
+    const eventDispatcher = new EventDispatcher();
+    const eventName = 'CustomerAddressChangedEvent';
+
+    eventDispatcher.register(eventName, new SendConsoleLogHandler());
+
+    const userAddressChangedEvent = new CustomerAddressChangedEvent({
+      id: this.id,
+      name: this.name,
+      address: this.address,
+    });
+
+    eventDispatcher.notify(userAddressChangedEvent);
   }
 }
 
